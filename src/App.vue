@@ -1,5 +1,6 @@
 <template >
   <div id="app" style="background-color: #734046;">
+    <!-- NAVBAR -->
     <div>
       <b-navbar toggleable="lg" type="light" variant="white" class="navbar_borde">
         
@@ -24,6 +25,7 @@
       </b-navbar>
     </div>
     <router-view />
+    <!-- FOOTER -->
     <footer class="text-center">Este seria el footer</footer>
   </div>
 </template>

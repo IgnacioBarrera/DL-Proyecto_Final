@@ -1,5 +1,21 @@
 <template>
   <div>
-    <h1>Contacto</h1>
+    <FormularioContacto/>
   </div>
 </template>
+
+<script>
+
+import FormularioContacto from '@/components/FormularioContacto.vue';
+
+export default {
+  name: 'Contacto',
+  components: {
+    FormularioContacto,
+  }
+}
+</script>
+
+<style>
+
+</style>

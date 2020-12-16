@@ -1,12 +1,18 @@
 <template>
     <div>
-      <h1>vista trabaja con TrabajaConNosotros</h1>
+      <FormularioTrabajo/>
     </div>
 </template>
 
 <script>
+import FormularioTrabajo from '@/components/FormularioTrabajo.vue';
+
+
 export default {
-    name: 'TrabajaConNosotros'
+    name: 'TrabajaConNosotros',
+    components: {
+      FormularioTrabajo,
+    },
 }
 </script>
 
