@@ -3,8 +3,8 @@
     <div class="image-fondo mt-5">
       <h1 class="text-white text-center text-titulo">CONTÁCTENOS</h1>
     </div>
-    <div class="row">
-      <div class="col-md-6 FC-info">
+    <div class="row my-5">
+      <div class="col-md-6 FC-info  my-2">
         <div class="container">
           <h2 class="text-white">MINERA BARBA S.C.M</h2>
           <p class="casa-matriz text-white">Casa Matriz</p>
@@ -13,7 +13,7 @@
           <p class="text-white">E-mail: minera@barba.cl</p>
         </div>
       </div>
-      <div class="col-md-6 my-5">
+      <div class="col-md-6 my-2">
         <form>
           <div class="form-group text-white">
             <label for="exampleFormControlInput1">Correo Electrónico</label>
