@@ -26,13 +26,19 @@
     </div>
     <router-view />
     <!-- FOOTER -->
-    <footer class="text-center">Este seria el footer</footer>
+    <Footer/>
   </div>
 </template>
 
 <script>
+import Footer from '@/components/Footer.vue';
+
+
 export default {
   name: 'App',
+  components : {
+    Footer,
+  }
 }
 </script>
 
@@ -49,13 +55,6 @@ export default {
   }
   a,em{
     color: orange;
-  }
-  footer {
-    
-    background-color: #fff;
-    border-top: 2px solid orange;
-    height: 100px;
-    padding: 50px 0;
   }
   .linke {
     text-decoration-color: none;
