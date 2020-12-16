@@ -4,7 +4,7 @@
       <h1 class="text-white text-center text-titulo">CONTÁCTENOS</h1>
     </div>
     <div class="row">
-      <div class="col-md-6 FC-info">
+      <div class="col-md-6   FC-info">
         <div class="container">
           <h2 class="text-white">MINERA BARBA S.C.M</h2>
           <p class="casa-matriz text-white">Casa Matriz</p>
