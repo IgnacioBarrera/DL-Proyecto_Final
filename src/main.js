@@ -7,8 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
-//import firebase from 'firebase';
-//import { firebaseConfig } from "./config/firebaseConfig";
+import firebase from 'firebase';
+import { firebaseConfig } from "./config/firebaseConfig";
 
 // Install BootstrapVue
 Vue.use(BootstrapVue);
@@ -16,11 +16,11 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(ElementUI);
 
-//firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 Vue.config.productionTip = false
 
-//export const db = firebase.firestore();
+export const db = firebase.firestore();
 
 new Vue({
   router,
