@@ -20,6 +20,22 @@ const routes = [
     name: 'TrabajaConNosotros',
     component: () => import(/* webpackChunkName: "TrabajaConNosotros" */ '../views/TrabajaConNosotros.vue')
   },
+  {
+    path: '/perfil',
+    name: 'Perfil',
+    component: () => import(/* webpackChunkName: "TrabajaConNosotros" */ '../views/Perfil.vue')
+  },
+
+  /* Esta ruta puede vamos aplicarla solo para cuando el usuario este registrado */
+  {
+    path: '/registro',
+    name: 'Registro',
+    component: () => import(/* webpackChunkName: "TrabajaConNosotros" */ '../views/Registro.vue'),
+    meta:{
+      login: true
+    }
+
+  },
 ]
 
 const router = new VueRouter({

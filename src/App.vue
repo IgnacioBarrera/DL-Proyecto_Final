@@ -17,7 +17,7 @@
               <template #button-content>
                 <em>Usuario</em>
               </template>
-              <b-dropdown-item>Perfil</b-dropdown-item>
+              <b-dropdown-item><router-link style="text-decoration: none" to="/Perfil">Perfil</router-link></b-dropdown-item>
               <b-dropdown-item>Salir</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
