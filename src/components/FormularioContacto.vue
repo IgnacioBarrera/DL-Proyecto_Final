@@ -14,20 +14,20 @@
         </div>
       </div>
       <div class="col-md-6 my-2">
-        <form class="text-white">
+        <form class="text-white" @submit.prevent="enviatrabajo">
           <div class="form-group">
             <label for="exampleFormControlInput1">Correo Electrónico</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese su correo Electrónico"/>
+            <input v-model="form.correo" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese su correo electrónico"/>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput2">Nombre</label>
-            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Nombre"/>
+            <input v-model="form.nombre" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Nombre"/>
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Mensaje</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensaje"></textarea>
+            <textarea v-model="form.mensaje" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensaje"></textarea>
           </div>
-          <button type="button" class="btn btn-info">Enviar</button>
+          <button type="submit" class="btn btn-info">Enviar</button>
         </form>
       </div>
     </div>
@@ -37,6 +37,20 @@
 <script>
 export default {
   name: "FormularioContacto",
+  data() {
+    return {
+      form: {
+        correo: '',
+        nombre: '',
+        mensaje: '',
+      }
+    }
+  },
+  methods: {
+    enviatrabajo(){
+      this.$store.dispatch('enviandoContacto', this.form)
+    }
+  },
 };
 </script>
 
