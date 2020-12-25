@@ -12,13 +12,15 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown right>
+            <!-- <b-nav-item class="iniciar-sesion">Iniciar Sesión</b-nav-item> -->
+            <b-button variant="success" v-if="!this.uid" @click="iniciar">Iniciar Sesión</b-button>
+            <b-nav-item-dropdown right v-else>
               <!-- Using 'button-content' slot -->
               <template #button-content>
                 <em>Usuario</em>
               </template>
-              <b-dropdown-item><router-link style="text-decoration: none" to="/Perfil">Perfil</router-link></b-dropdown-item>
-              <b-dropdown-item>Salir</b-dropdown-item>
+              <b-dropdown-item><router-link style="text-decoration: none" to="/perfil">Perfil</router-link></b-dropdown-item>
+              <b-dropdown-item v-if="this.uid" @click.prevent="salir">Salir</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -32,13 +34,44 @@
 
 <script>
 import Footer from '@/components/Footer.vue';
+import firebase from 'firebase';
 
 
 export default {
   name: 'App',
   components : {
     Footer,
-  }
+  },
+    data() {
+    return {
+      uid: '',
+    }
+  },
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user);
+        this.uid = user.uid;
+        console.log('Hay usuario activo.');
+        this.$router.push('/')
+      } else {
+        console.log('No hay usuarios registrados')
+      }
+    });
+  },
+  methods: {
+    salir(){
+      firebase.auth().signOut().then(() => {
+        console.log('Se cerró la sesión correctamente');
+        this.$router.push("/login");
+        }).catch((error) => {
+        console.log(error);
+      });
+    },
+    iniciar(){
+        this.$router.push("/login");
+    }
+  },
 }
 </script>
 

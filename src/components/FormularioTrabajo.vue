@@ -3,39 +3,24 @@
     <div class="image-fondo mt-5">
       <h1 class="text-white text-center text-titulo">TRABAJA CON NOSOTROS</h1>
     </div>
-    <b-form @submit="onSubmit" @reset="onReset" class="text-white text-center">
+    <b-form @submit.prevent="enviatrabajo" @reset.prevent="reset" class="text-white text-center mt-5">
       <!-- obtener email -->
-      <b-form-group
-        id="input-group-1"
-        label="Tu Correo:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.email"
-          type="email"
-          placeholder="Ingersa tu correo"
-          required
-        ></b-form-input>
+      <b-form-group id="input-group-1" label="Tu Correo:" label-for="input-1">
+        <b-form-input id="input-1" v-model="form.correo" type="email" placeholder="Ingresa tu correo" required></b-form-input>
       </b-form-group>
       <!-- obtener nombre -->
       <b-form-group id="input-group-2" label="Tu Nombre:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.nombre"
-          placeholder="Ingresa tu nombre"
-          required
-        ></b-form-input>
+        <b-form-input id="input-2" v-model="form.nombre" placeholder="Ingresa tu nombre" required></b-form-input>
       </b-form-group>
 
-      <!-- obtener mensaje -->
+      <!-- obtener Numero de Teléfono -->
       <b-form-group id="input-group-3" label="Numero de telefono:" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          v-model="form.telefono"
-          placeholder="+56 XXXXX XXXX"
-          required
-        ></b-form-input>
+        <b-form-input id="input-3" v-model="form.telefono" placeholder="9 XXXXXXXX" required></b-form-input>
+      </b-form-group>
+
+      <!-- obtener profesion -->
+      <b-form-group id="input-group-4" label="Profesión:" label-for="input-4">
+        <b-form-input id="input-4" v-model="form.profesion" placeholder="Contador" required></b-form-input>
       </b-form-group>
       <div class="mt-5">
         <b-button class= 'mr-3' type="submit" variant="primary">Enviar</b-button>
@@ -70,9 +55,18 @@
         this.form.food = null
         this.form.checked = []
         
+      },
+      reset() {
+        this.form.correo = '';
+        this.form.nombre = '';
+        this.form.telefono = '';
+        this.form.profesion = '';
+      },
+      enviatrabajo() {
+        this.$store.dispatch('enviandoTrabajo', this.form);
       }
     }
-  }
+}
 </script>
 
 <style scoped>
