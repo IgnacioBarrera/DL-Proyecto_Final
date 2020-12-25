@@ -52,9 +52,8 @@
       return {
         form: {
           email: '',
-          name: '',
-          food: null,
-          checked: []
+          nombre: '',
+          telefono: null,
         },
       }
     },
