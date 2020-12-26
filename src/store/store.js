@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {db} from "../main";
+
+/* importando  Api*/
+import { apiGet } from '@/services/apiConexion';
+
 //import router from '../router/router';
 
 
@@ -9,11 +13,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+
+    apiDatos: []
   },
   getters: {
-
+    enviarApiDatos(state){
+      return state.apiDatos;
+    }
   },
   mutations: {
+
+    mutandoApiDatos (state, valores) {
+      state.apiDatos = valores;
+    }
   },
   actions: {
     enviandoTrabajo(context,form){
@@ -37,6 +49,11 @@ export default new Vuex.Store({
       form.correo = '';
       form.mensaje = '';
       form.nombre = '';
+    },
+    /* llamando a la api */
+    async traerApiDatos ({commit}) {
+      let datos = await apiGet();
+      commit('mutandoApiDatos', datos.results)
     }
   },
 })

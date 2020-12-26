@@ -7,11 +7,11 @@
         <div class="card" style="width: 15rem">
           <img class="card-img-top" src="https://picsum.photos/1024/480/?image=10" alt="Card image cap"/>
           <div class="card-body">
-            <h5 class="card-title">Titulo Carta</h5>
+            <h5 class="card-title">Indicadores</h5>
             <p class="card-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium nam ad quisquam eos numquam. Nesciunt recusandae quod nam doloribus totam!
+              Aquí podras ver los indicadores con los que trabajamos actualizados.
             </p>
-            <b-button v-b-modal.modal-1 class="btn btn-success" @click.prevent="click">Ver más</b-button>
+            <b-button v-b-modal.modal-1 class="btn btn-success">Ver más</b-button>
           </div>
         </div>
       </div>
@@ -45,7 +45,15 @@
     
     <div>
       <b-modal id="modal-1" title="BootstrapVue">
-        <p class="my-4">Este es la modal 1</p>
+        <p class="my-4 text-center
+        ">El valor del dolar</p>
+        <h5 class="text-center">{{indicador.dolar.valor}}</h5>
+        <p class="my-4 text-center
+        ">El valor de la UF</p>
+        <h5 class="text-center">{{indicador.uf.valor}}</h5>
+        <p class="my-4 text-center
+        ">El valor del cobre</p>
+        <h5 class="text-center">{{indicador.libra_cobre.valor}}</h5>
       </b-modal>
     </div>
     <div>
@@ -62,21 +70,19 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "Cartas",
   data() {
     return {
-      indicador: ''
+      indicador: null
     }
   },
-  methods: {
-    obtenerDolar() {
-      fetch(`https://mindicador.cl/api/dolar/`)
-      .then(result => {
-        console.log(result);
-        this.inicador = result.url
-      })
-    }
+  mounted() {
+    axios
+      .get('https://mindicador.cl/api')
+      .then(response => (this.indicador = response.data))
   },
 };
 </script>
