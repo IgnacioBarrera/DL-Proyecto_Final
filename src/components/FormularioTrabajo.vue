@@ -39,23 +39,11 @@
           email: '',
           nombre: '',
           telefono: null,
+          profesion: '',
         },
       }
     },
     methods: {
-      onSubmit(event) {
-        event.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        
-      },
       reset() {
         this.form.correo = '';
         this.form.nombre = '';
