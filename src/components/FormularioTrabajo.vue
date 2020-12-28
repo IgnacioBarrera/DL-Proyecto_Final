@@ -31,30 +31,41 @@
 </template>
 
 <script>
-export default {
-  name: 'FormularioTrabajo',
-  data() {
-    return {
-      form: {
-        email: '',
-        nombre: '',
-        telefono: '',
-        profesion: '',
+  export default {
+    name: 'FormularioTrabajo',
+    data() {
+      return {
+        form: {
+          email: '',
+          nombre: '',
+          telefono: null,
+        },
+      }
+    },
+    methods: {
+      onSubmit(event) {
+        event.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+      onReset(event) {
+        event.preventDefault()
+        // Reset our form values
+        this.form.email = ''
+        this.form.name = ''
+        this.form.food = null
+        this.form.checked = []
         
       },
+      reset() {
+        this.form.correo = '';
+        this.form.nombre = '';
+        this.form.telefono = '';
+        this.form.profesion = '';
+      },
+      enviatrabajo() {
+        this.$store.dispatch('enviandoTrabajo', this.form);
+      }
     }
-  },
-    methods: {
-    reset() {
-      this.form.correo = '';
-      this.form.nombre = '';
-      this.form.telefono = '';
-      this.form.profesion = '';
-    },
-    enviatrabajo() {
-      this.$store.dispatch('enviandoTrabajo', this.form);
-    }
-  }
 }
 </script>
 

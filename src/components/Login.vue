@@ -15,6 +15,7 @@
         <b-button type="submit" variant="primary">Ingresar</b-button>
         <b-button type="reset" variant="danger" class="mx-2">Reset</b-button>
       </b-form>
+        <b-button variant="primary" @click="registrar">Registrar</b-button>
     </div>
   </div>
 </template>
@@ -75,7 +76,7 @@ export default {
       }
     },
     registrar(){
-      this.$router.push('/registro');
+      this.$router.push('../registro');
     },
   },
 };
