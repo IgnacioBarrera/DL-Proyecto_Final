@@ -41,9 +41,6 @@ const routes = [
     path: '/registro',
     name: 'Registro',
     component: () => import(/* webpackChunkName: "Registro" */ '../views/Registro.vue'),
-    meta:{
-      login: true
-    }
   },
 ]
 

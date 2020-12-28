@@ -44,16 +44,16 @@
     </div>
     
     <div>
-      <b-modal id="modal-1" title="BootstrapVue">
+      <b-modal id="modal-1" title="Indicadores">
         <p class="my-4 text-center
         ">El valor del dolar</p>
-        <h5 class="text-center">{{indicador.dolar.valor}}</h5>
+        <h5 class="text-center">{{indicador.dolar.valor}} $</h5>
         <p class="my-4 text-center
         ">El valor de la UF</p>
-        <h5 class="text-center">{{indicador.uf.valor}}</h5>
+        <h5 class="text-center">{{indicador.uf.valor}} $</h5>
         <p class="my-4 text-center
-        ">El valor del cobre</p>
-        <h5 class="text-center">{{indicador.libra_cobre.valor}}</h5>
+        ">El valor del cobre en dolares</p>
+        <h5 class="text-center">{{indicador.libra_cobre.valor}} $</h5>
       </b-modal>
     </div>
     <div>
