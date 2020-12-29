@@ -3,7 +3,7 @@
         <div class="image-fondo mt-5">
         <h1 class="text-white text-center text-titulo">Registrar Usuario</h1>
         </div>
-        <b-form @submit="agregar" @reset="onReset" class="text-white text-center mt-5">
+        <b-form @submit.prevent="agregar" @reset.prevent="onReset" class="text-white text-center mt-5">
         <!-- obtener nombre -->
         <b-form-group
             id="input-group-1"
@@ -14,7 +14,7 @@
             id="input-1"
             v-model="form.nombre"
             type="text"
-            placeholder="Ingersa tu nombre"
+            placeholder="Ingresa tu nombre"
             required
             ></b-form-input>
         </b-form-group>
@@ -28,7 +28,7 @@
             id="input-2"
             v-model="form.correo"
             type="email"
-            placeholder="Ingersa tu correo"
+            placeholder="Ingresa tu correo"
             required
             ></b-form-input>
         </b-form-group>
@@ -70,8 +70,8 @@ export default {
             if (this.form.nombre && this.form.correo && this.form.password) {
                 firebase.auth().createUserWithEmailAndPassword(this.form.correo, this.form.password)
                 .then(() => {
-                    this.$router.push('/Login');
-                })
+                    
+                }).catch((error) => console.error(error))
             }
         },
         onReset(event) {

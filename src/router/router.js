@@ -31,6 +31,14 @@ const routes = [
     },
   },
   {
+    path: '/informes',
+    name: 'Informes',
+    component: () => import(/* webpackChunkName: "Informes" */ '../views/Informes.vue'),
+    meta: {
+      login: true
+    },
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
