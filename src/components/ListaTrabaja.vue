@@ -2,22 +2,24 @@
   <div>
     <div class="lista container text-center">
       <h1 class="text-center my-5">LISTA TRABAJA</h1>
-      <table class="table">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Correo</th>
-            <th scope="col">Editar o Eliminar</th>
+            <th scope="col">Profesion</th>
+            <th scope="col">Telefono (+56)</th>
+            <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>Nombre</th>
-            <td>CORREO</td>
+          <tr v-for="(item, index) in traerTrabajaConNosotros" :key="index" >
+            <td><h5 class="my-3">{{ item.nombre }}</h5></td>
+            <td><p class="my-3">{{ item.correo }}</p></td>
+            <td><p class="my-3">{{ item.profesion }}</p></td>
+            <td><p class="my-3">{{ item.telefono }}</p></td>
             <td>
-              <b-button variant="success" class="mx-2" v-b-modal.modal @click="verMensaje">Ver mensaje</b-button>
-              <b-button variant="danger" class="mx-2" @click.prevent="eliminarMensaje">Eliminar</b-button
-              >
+              <b-button variant="danger" class="mx-2 my-2" @click.prevent="eliminarMensaje(item.id)">Eliminar</b-button>
             </td>
           </tr>
           <hr />
@@ -43,16 +45,18 @@ export default {
     };
   },
   methods: {
-    eliminarMensaje(){
-      console.log('sirve eliminar')
+    eliminarMensaje(id){
+      console.log('sirve eliminar');
+      this.$store.dispatch("eliminarTrabaja", id);
     },
-    verMensaje(){
-      console.log('sirve ver mensaje')
-    }
   },
   mounted() {
+      this.$store.dispatch("TraigoTrabajo");
   },
   computed: {
+    traerTrabajaConNosotros(){
+      return this.$store.getters.enviandoTrabajaConNosotros;
+    }
   },
 };
 </script>

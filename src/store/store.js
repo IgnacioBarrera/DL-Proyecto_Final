@@ -14,7 +14,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     contactenos: [],
-    apiDatos: []
+    apiDatos: [],
+    TabajaConNosotros: []
   },
   getters: {
     enviarApiDatos(state){
@@ -23,6 +24,10 @@ export default new Vuex.Store({
     /* Coleccion de contactenos */
     enviarContacto(state) {
       return state.contactenos;
+    },
+    /* COLECCION DE TRABAJA CON NOSOTROS */
+    enviandoTrabajaConNosotros(state) {
+      return state.TabajaConNosotros;
     }
   },
   mutations: {
@@ -32,13 +37,17 @@ export default new Vuex.Store({
     },
 
     /* coleccion de contactenos */
-    mutarContacto(state, arreglo) {
+    MutandoContacto(state, arreglo) {
       state.contactenos = arreglo;
+    },
+    /* MUTANDO COLECCION TRABAJA CON NOSOTROS */
+    MutandoTrabajo(state, arreglo) {
+      state.TabajaConNosotros = arreglo;
     }
   },
   actions: {
 
-    /* coleccion de trabaja con nosotros */
+    /* CREANDO EN COLECCION TRABAJA CON NOSOTROS UN USUARIO */
     enviandoTrabajo(context,form){
       db.collection('trabaja_con_nosotros').add({
         correo: form.correo,
@@ -52,7 +61,7 @@ export default new Vuex.Store({
       form.telefono = '';
     },
 
-    /* coleccion de contactenos */
+    /* CREANDO EN COLECCION CONTACTENOS UN USUARIO */
     enviandoContacto(context,form){
       db.collection('contactenos').add({
         correo: form.correo,
@@ -63,8 +72,8 @@ export default new Vuex.Store({
       form.mensaje = '';
       form.nombre = '';
     },
-
-    traerContacto({commit}) {
+    /* TRAIGO CONTACTO */
+    TraigoContacto({commit}) {
       db.collection('contactenos').onSnapshot(resp => {
         let arreglo = [];
         resp.forEach(element => {
@@ -75,10 +84,26 @@ export default new Vuex.Store({
             mensaje: element.data().mensaje,
           });
         });
-        commit('mutarContacto', arreglo);
+        commit('MutandoContacto', arreglo);
       })
     },
-
+    /* TRAIGO TRABAJA CON NOSOTROS */
+    TraigoTrabajo({commit}){
+      db.collection('trabaja_con_nosotros').onSnapshot(resp=> {
+        let arreglo= [];
+        resp.forEach(element => {
+          arreglo.push({
+            id: element.id,
+            nombre: element.data().nombre,
+            correo: element.data().correo,
+            profesion: element.data().profesion,
+            telefono: element.data().telefono,
+          });
+        });
+        commit('MutandoTrabajo',arreglo);
+      })
+    },
+    /* ACTUALIZO EL CONTACTO */
     actualizarContacto(context, contactos) {
       db.collection('contactenos').doc(contactos.id).update({
         nombre: contactos.nombre,
@@ -87,15 +112,22 @@ export default new Vuex.Store({
       })
 
     },
-
-    eliminarContato(context, id) {
+    /* ELIMINO CONTACTO */
+    eliminarContacto(context, id) {
       db.collection('contactenos').doc(id).delete().then(() => {
         console.log('Eliminado');
       }).catch(error => {
         console.log(error);
       })
     },
-
+    /* ELIMINAR TRABAJA CON NOSOTROS */
+    eliminarTrabaja(context, id) {
+      db.collection('trabaja_con_nosotros').doc(id).delete().then(() => {
+        console.log('Eliminado');
+      }).catch(error => {
+        console.log(error);
+      })
+    },
     
     /* llamando a la api */
     async traerApiDatos ({commit}) {
