@@ -21,6 +21,8 @@
               </template>
               <b-dropdown-item><router-link style="text-decoration: none" to="/perfil">Perfil</router-link></b-dropdown-item>
               <b-dropdown-item><router-link style="text-decoration: none" to="/informes">Informes</router-link></b-dropdown-item>
+              <b-dropdown-item><router-link style="text-decoration: none" :to="{name: 'VistaTrabaja'}">Lista T.C.N.</router-link></b-dropdown-item>
+              <b-dropdown-item><router-link style="text-decoration: none" :to="{name: 'VistaContacto'}">Lista Contacto</router-link></b-dropdown-item>
 
               <b-dropdown-item v-if="this.uid" @click.prevent="salir">Salir</b-dropdown-item>
             </b-nav-item-dropdown>

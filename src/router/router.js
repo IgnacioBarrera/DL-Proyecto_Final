@@ -31,6 +31,22 @@ const routes = [
     },
   },
   {
+    path: '/vistatrabaja',
+    name: 'VistaTrabaja',
+    component: () => import(/* webpackChunkName: "Vistatrabaja" */ '../views/VistaTrabaja.vue'),
+    meta: {
+      login: true
+    },
+  },
+  {
+    path: '/vistacontacto',
+    name: 'VistaContacto',
+    component: () => import(/* webpackChunkName: "VistaContacto" */ '../views/VistaContacto.vue'),
+    meta: {
+      login: true
+    },
+  },
+  {
     path: '/informes',
     name: 'Informes',
     component: () => import(/* webpackChunkName: "Informes" */ '../views/Informes.vue'),
