@@ -76,9 +76,10 @@ export default {
         },
         onReset(event) {
             event.preventDefault()
-            // Reset our form values
+            // Reseteo de las casillas
             this.form.email = ''
             this.form.name = ''
+            this.form.password = ''
         }
     }
 }
