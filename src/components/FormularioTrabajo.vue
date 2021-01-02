@@ -15,7 +15,7 @@
 
       <!-- obtener Numero de Teléfono -->
       <b-form-group id="input-group-3" label="Numero de telefono:" label-for="input-3">
-        <b-form-input id="input-3" v-model="form.telefono" placeholder="9 XXXXXXXX" required></b-form-input>
+        <b-form-input id="input-3" v-model="form.telefono" placeholder="+56 9 XXXXXXXX" required></b-form-input>
       </b-form-group>
 
       <!-- obtener profesion -->
@@ -23,8 +23,8 @@
         <b-form-input id="input-4" v-model="form.profesion" placeholder="Contador" required></b-form-input>
       </b-form-group>
       <div class="mt-5">
-        <b-button class= 'mr-3' type="submit" variant="primary">Enviar</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button>
+        <b-button class='mr-3 btn' type="submit">Enviar</b-button>
+        <b-button class="reset" type="reset" variant="danger">Reset</b-button>
       </div>
     </b-form>
   </div>
@@ -51,6 +51,19 @@
         this.form.profesion = '';
       },
       enviatrabajo() {
+        if (this.form.nombre.length <3) {
+          this.$message.error('Oops, debe ingresar un nombre valido.');
+          return;
+        }
+        let patronTlf = /^(\+?56)?(\s?)(0?9)(\s?)[9876543]\d{7}$/gim;
+        if (!patronTlf.test(this.form.telefono)) {
+          this.$message.error('Oops, debe ingresar un numero de telefono valido.');
+          return;
+        }
+        if (this.form.profesion.length <5) {
+          this.$message.error('Oops, debe ingresar un campo valido en profesion.');
+          return;
+        }
         this.$store.dispatch('enviandoTrabajo', this.form);
       }
     }
@@ -67,5 +80,25 @@
 }
 .text-titulo {
   padding-top: 175px;
+}
+.btn {
+  background-color: #9f5f80;
+  border-color: #ff9d72;
+}
+.btn:hover {
+  background-color:#ff9d72;
+  border-color: #9f5f80;
+}
+.reset {
+  background-color: #ffba93;
+  border-color: #ff9d72;
+
+}
+.reset:hover {
+  background-color:#ff9d72;
+  border-color: #9f5f80;
+}
+.registro {
+  background-color: #ffba93;
 }
 </style>

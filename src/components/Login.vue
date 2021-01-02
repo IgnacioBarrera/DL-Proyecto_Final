@@ -12,10 +12,10 @@
           <b-form-input id="input-2" v-model="form.clave" type="password" required placeholder="Contraseña"></b-form-input>
         </b-form-group>
             <!-- BOTONES -->
-        <b-button type="submit" variant="primary">Ingresar</b-button>
-        <b-button type="reset" variant="danger" class="mx-2">Reset</b-button>
+        <b-button type="submit" class="btn">Ingresar</b-button>
+        <b-button type="reset" class="mx-2 reset">Reset</b-button>
       </b-form>
-        <b-button variant="primary" @click="registrar">Registrar</b-button>
+        <b-button class="registro" @click="registrar">Registrar</b-button>
     </div>
   </div>
 </template>
@@ -86,5 +86,21 @@ export default {
 #input-1,
 #input-2{
     width: 90%;
-};
+}
+.btn {
+  background-color: #654062;
+  border-color: #ff9d72;
+}
+.reset {
+  background-color: #ffba93;
+  border-color: #ff9d72
+
+}
+.reset:hover, .btn:hover {
+  background-color: #ff9d72;
+  border-color: #654062;
+}
+.registro {
+  background-color: #ffba93;
+}
 </style>
