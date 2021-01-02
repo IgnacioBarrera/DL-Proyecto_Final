@@ -69,8 +69,12 @@ export default {
         agregar(){
             if (this.form.nombre && this.form.correo && this.form.password) {
                 firebase.auth().createUserWithEmailAndPassword(this.form.correo, this.form.password)
-                .then(() => {
-                    
+                .then(resp => {
+                    return resp.user.updateProfile({
+                        displayName: this.form.nombre
+                    }).then(() => {
+                        this.$router.push('/informes');
+                    })
                 }).catch((error) => console.error(error))
             }
         },

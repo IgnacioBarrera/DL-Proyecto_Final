@@ -96,4 +96,18 @@ export default {
   text-align: center;
   background-color: #ffd66b;
 }
+
+.btn-success {
+  background-color: #ff9d72;
+  border-color: #654062;
+}
+.btn-success:hover {
+  background-color: #654062;
+  border-color: #ff9d72;
+}
+.btn-success:focus {
+  background-color: #ff9d72;
+  border-color: #654062;
+  box-shadow: none;
+}
 </style>

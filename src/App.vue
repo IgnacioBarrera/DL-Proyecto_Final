@@ -13,7 +13,7 @@
             <b-navbar-brand><router-link style="text-decoration: none"  to="/Contacto">Contacto</router-link></b-navbar-brand>
         <b-navbar-brand><router-link style="text-decoration: none" :to="{name: 'TrabajaConNosotros'}">Trabaja Con Nosotros</router-link></b-navbar-brand>
             <!-- <b-nav-item class="iniciar-sesion">Iniciar Sesión</b-nav-item> -->
-            <b-button variant="success" v-if="!this.uid" @click="iniciar">Iniciar Sesión</b-button>
+            <b-button class="btn" v-if="!this.uid" @click="iniciar">Iniciar Sesión</b-button>
             <b-nav-item-dropdown right v-else>
               <!-- Using 'button-content' slot -->
               <template #button-content>
@@ -56,6 +56,7 @@ export default {
       if (user) {
         console.log(user);
         this.uid = user.uid;
+        this.$store.dispatch('agregarUsuario',user)
         console.log('Hay usuario activo.');
         this.$router.push('/informes')
       } else {
@@ -96,6 +97,15 @@ export default {
   .linke {
     text-decoration-color: none;
   }
+  .btn {
+  background-color:#ff9d72;
+  border-color: #9f5f80;
+}
+.btn:hover {
+  background-color: #9f5f80;
+  border-color: #ff9d72;
+
+}
 </style>
 
 

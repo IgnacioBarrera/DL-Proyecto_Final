@@ -13,6 +13,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: {},
     contactenos: [],
     apiDatos: [],
     TabajaConNosotros: []
@@ -28,6 +29,10 @@ export default new Vuex.Store({
     /* COLECCION DE TRABAJA CON NOSOTROS */
     enviandoTrabajaConNosotros(state) {
       return state.TabajaConNosotros;
+    },
+    /* USUARIO REGISTRADO */
+    enviarUsuario(state) {
+      return state.user;
     }
   },
   mutations: {
@@ -35,7 +40,6 @@ export default new Vuex.Store({
     mutandoApiDatos (state, valores) {
       state.apiDatos = valores;
     },
-
     /* coleccion de contactenos */
     MutandoContacto(state, arreglo) {
       state.contactenos = arreglo;
@@ -43,10 +47,15 @@ export default new Vuex.Store({
     /* MUTANDO COLECCION TRABAJA CON NOSOTROS */
     MutandoTrabajo(state, arreglo) {
       state.TabajaConNosotros = arreglo;
+    },
+    /* MUTANDO USUARIO */
+    mutandoUsuario(state, userDato) {
+      state.user = userDato
     }
   },
+  
+  
   actions: {
-
     /* CREANDO EN COLECCION TRABAJA CON NOSOTROS UN USUARIO */
     enviandoTrabajo(context,form){
       db.collection('trabaja_con_nosotros').add({
@@ -60,7 +69,6 @@ export default new Vuex.Store({
       form.profesion = '';
       form.telefono = '';
     },
-
     /* CREANDO EN COLECCION CONTACTENOS UN USUARIO */
     enviandoContacto(context,form){
       db.collection('contactenos').add({
@@ -110,7 +118,6 @@ export default new Vuex.Store({
         correo: contactos.correo,
         mensaje: contactos.mensaje
       })
-
     },
     /* ELIMINO CONTACTO */
     eliminarContacto(context, id) {
@@ -128,11 +135,14 @@ export default new Vuex.Store({
         console.log(error);
       })
     },
-    
-    /* llamando a la api */
+    /* LLAMANDO A LA API */
     async traerApiDatos ({commit}) {
       let datos = await apiGet();
       commit('mutandoApiDatos', datos.results)
+    },
+    /* AGREGANDO USUARIO */
+    agregarUsuario({commit}, user) {
+      commit('mutandoUsuario', user)
     }
   },
 })

@@ -17,15 +17,15 @@
         <form class="text-white" @submit.prevent="enviatrabajo">
           <div class="form-group">
             <label for="exampleFormControlInput1">Correo Electrónico</label>
-            <input v-model="form.correo" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese su correo electrónico"/>
+            <input v-model="form.correo" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese su correo electrónico" required/>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput2">Nombre</label>
-            <input v-model="form.nombre" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Nombre"/>
+            <input v-model="form.nombre" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Nombre" required/>
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Mensaje</label>
-            <textarea v-model="form.mensaje" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensaje"></textarea>
+            <textarea v-model="form.mensaje" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensaje" required></textarea>
           </div>
           <button type="submit" class="btn btn-info">Enviar</button>
         </form>
@@ -48,7 +48,20 @@ export default {
   },
   methods: {
     enviatrabajo(){
-      this.$store.dispatch('enviandoContacto', this.form)
+      if (this.form.nombre.length < 3) {
+        this.$message.error('Oops, debe ingresar un nombre valido.');
+        return;
+      }
+      if (this.form.mensaje.length <6) {
+        this.$message.error('Oops, debe ingresar un mensaje');
+      }
+      else{
+        this.$store.dispatch('enviandoContacto', this.form)
+        this.$message({
+          message: 'Felicidades, tu mensaje ha sido enviado.',
+          type: 'success'
+        });
+      }
     }
   },
 };
@@ -70,5 +83,17 @@ export default {
 }
 .text-titulo {
   padding-top: 175px;
+}
+.btn-info {
+  background-color: #ff9d72;
+  border-color: #654062;
+}
+.btn-info:hover {
+  background-color: #ffba93;
+  border-color: #ff9d72;
+}
+.btn-info:focus {
+  background-color: #ff9d72;
+  border-color: #654062;
 }
 </style>

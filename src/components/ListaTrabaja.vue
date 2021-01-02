@@ -19,7 +19,7 @@
             <td><p class="my-3">{{ item.profesion }}</p></td>
             <td><p class="my-3">{{ item.telefono }}</p></td>
             <td>
-              <b-button variant="danger" class="mx-2 my-2" @click.prevent="eliminarMensaje(item.id)">Eliminar</b-button>
+              <b-button class="mx-2 my-2 reset" @click.prevent="eliminarMensaje(item.id)">Eliminar</b-button>
             </td>
           </tr>
           <hr />
@@ -46,8 +46,22 @@ export default {
   },
   methods: {
     eliminarMensaje(id){
-      console.log('sirve eliminar');
-      this.$store.dispatch("eliminarTrabaja", id);
+      this.$confirm('¿Seguro que deseas eliminar contacto', {
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar',
+        type: 'warning',
+        center: true
+      }).then(() => {
+        this.$store.dispatch("eliminarTrabaja", id);
+        this.$message({
+          message: 'Contacto eliminado',
+          type: 'success'
+        });
+      }).catch(() => {
+        this.$message.error('Cancelado');
+        console.log('No se elimino')
+      })
+      
     },
   },
   mounted() {
@@ -62,7 +76,16 @@ export default {
 </script>
 
 <style scoped>
-  .lista {
-    background-color: #fff;
-  }
+.lista {
+  background-color: #fff;
+}
+.reset {
+  background-color: #ffba93;
+  border-color: #ff9d72;
+
+}
+.reset:hover {
+  background-color:#ff9d72;
+  border-color: #9f5f80;
+}
 </style>

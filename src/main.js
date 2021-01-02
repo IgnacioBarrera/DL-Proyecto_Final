@@ -10,6 +10,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import firebase from 'firebase';
 import { firebaseConfig } from "./config/firebaseConfig";
 
+
 // Install BootstrapVue
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin

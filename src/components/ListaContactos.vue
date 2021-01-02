@@ -15,19 +15,21 @@
             <td><h5 class="my-3">{{ item.nombre }}</h5></td>
             <td><p class="my-3">{{ item.correo }}</p></td>
             <td>
-              <b-button variant="success" class="mx-2 my-2" v-b-modal.modal @click="verMensaje(item)">Ver mensaje</b-button>
-              <b-button variant="danger" class="mx-2 my-2" @click.prevent="eliminarMensaje(item.id)">Eliminar</b-button>
+              <b-button class="mx-2 my-2 btn" id="show-btn" @click="$bvModal.show('bv-modal-example'), verMensaje(item)">Ver mensaje</b-button>
+              <b-button class="mx-2 my-2 reset" @click.prevent="eliminarMensaje(item.id)">Eliminar</b-button>
             </td>
           </tr>
-          <hr />
-          <b-modal id="modal" :title="this.nombreModal">
-            <el-card class="box-card">
-              <div class="text item">
-                <h5>El usuario con id; "{{this.idModal}}", dejó el siguiente mensaje:</h5>
-                <p>{{this.mensajeModal}}</p>
-              </div>
-            </el-card>
-          </b-modal>
+
+          <b-modal id="bv-modal-example" hide-footer>
+          <template #modal-title>
+            <h5>Mensaje</h5>
+          </template>
+          <div class="d-block text-center">
+            <h5>El usuario: "{{this.nombreModal}}", dejó el siguiente mensaje:</h5>
+            <p>{{this.mensajeModal}}</p>
+          </div>
+          <b-button variant="info" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Cerrar</b-button>
+        </b-modal>
         </tbody>
       </table>
       <hr />
@@ -36,6 +38,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: "ListaContactos",
   data() {
@@ -54,9 +58,23 @@ export default {
       this.idModal = usuario.id;
 
     },
-
+    
     eliminarMensaje(id) {
-      this.$store.dispatch("eliminarContacto", id);
+      this.$confirm('¿Seguro que deseas eliminar', {
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar',
+        type: 'warning',
+        center: true
+      }).then(() => {
+        this.$store.dispatch("eliminarContacto", id);
+        this.$message({
+          message: 'Mensaje eliminado',
+          type: 'success'
+        });
+      }).catch(() => {
+        this.$message.error('Cancelado');
+        console.log('No se elimino')
+      })
     },
   },
   mounted() {
@@ -71,7 +89,29 @@ export default {
 </script>
 
 <style scoped>
-  .lista {
-    background-color: #fff;
-  }
+.lista {
+  background-color: #fff;
+  height: 100vh;
+  margin-bottom: 50px;
+}
+.btn {
+  background-color: #583d72;
+  border-color: #ff9d72;
+}
+.btn:hover {
+  background-color:#ff9d72;
+  border-color: #9f5f80;
+}
+.reset {
+  background-color: #ffba93;
+  border-color: #ff9d72;
+
+}
+.reset:hover {
+  background-color:#ff9d72;
+  border-color: #9f5f80;
+}
+.registro {
+  background-color: #ffba93;
+}
 </style>
