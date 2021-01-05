@@ -6,17 +6,17 @@
       <div style="padding: 14px;">
         <h1>{{datosUsuario.displayName}}</h1>
         <p>Correo: {{datosUsuario.email}}</p>
-        <p>Fono: {{datosUsuario.phoneNumber}}</p>
         <div class="bottom clearfix">
           <p class="time">Usuario creado: {{datosUsuario.metadata.creationTime}}</p>
           <p class="time">Última conexion: {{datosUsuario.metadata.lastSignInTime}}</p>
         </div>
         <el-button type="text" class="button" @click="editar">EDITAR</el-button>
+        <el-button type="text" class="button" @click="eliminar">ELIMINAR</el-button>
       </div>
     </el-card>
 
 <!-- FORMULARIO -->
-    <div class="container" v-if="mostrar">
+    <b-form class="container" v-if="mostrar" @submit="guardar" @reset.prevent="reset">
       <b-card bg-variant="dark">
         <b-form-group
           label-cols-lg="3"
@@ -27,44 +27,26 @@
         >
           <b-form-group
             label="Nombre:"
-            label-for="nested-street"
+            label-for="nombre"
             label-cols-sm="3"
             label-align-sm="right"
           >
-            <b-form-input id="nested-street"></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="Correo:"
-            label-for="nested-city"
-            label-cols-sm="3"
-            label-align-sm="right"
-          >
-            <b-form-input id="nested-city"></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="Telefono:"
-            label-for="nested-state"
-            label-cols-sm="3"
-            label-align-sm="right"
-          >
-            <b-form-input id="nested-state"></b-form-input>
+            <b-form-input id="nombre" v-model="displayName" required></b-form-input>
           </b-form-group>
 
           <b-form-group
             label="Foto:"
-            label-for="nested-country"
+            label-for="foto"
             label-cols-sm="3"
             label-align-sm="right"
           >
-            <b-form-input id="nested-country"></b-form-input>
+            <b-form-input id="foto" v-model="photoURL" required></b-form-input>
           </b-form-group>
           <b-button class="mr-3 btn" type="submit" variant="primary">Guardar</b-button>
           <b-button class="reset" type="reset" variant="danger">Reset</b-button>          
         </b-form-group>
       </b-card>
-    </div>
+    </b-form>
   </div>
   
 
@@ -72,16 +54,44 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name:'PerfilUsuario',
   data() {
     return {
       mostrar: false,
+      displayName: '',
+      photoURL: ''
     };
   },
   methods: {
     editar() {
       this.mostrar = !this.mostrar;
+    },
+    guardar() {
+      firebase.auth().currentUser.updateProfile({
+        displayName: this.displayName,
+        photoURL: this.photoURL,
+        phoneNumber: this.phoneNumber,
+      }).then(function() {
+        console.log('Actualizado');
+      }).catch(function(error) {
+        console.error(error);
+      });
+    },
+    reset() {
+      this.displayName = '';
+      this.photoURL = '';
+    },
+    eliminar() {
+      firebase.auth().currentUser.delete().then(() => {
+  // User deleted.
+      console.log('Usuario eliminado');
+      }).catch(function(error) {
+  // An error happened.
+      console.error(error);
+      });
     }
   },
   computed: {
