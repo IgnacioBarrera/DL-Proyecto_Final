@@ -13,6 +13,8 @@
         <el-button type="text" class="button" @click="editar">EDITAR</el-button>
         <el-button type="text" class="button" @click="eliminar">ELIMINAR</el-button>
       </div>
+      <b-button class="registro" @click="registrar">Registrar usuario</b-button>
+
     </el-card>
 
 <!-- FORMULARIO -->
@@ -92,7 +94,10 @@ export default {
   // An error happened.
       console.error(error);
       });
-    }
+    },
+    registrar(){
+      this.$router.push('../registro');
+    },
   },
   computed: {
     datosUsuario() {
