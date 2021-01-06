@@ -15,7 +15,6 @@
         <b-button type="submit" class="btn">Ingresar</b-button>
         <b-button type="reset" class="mx-2 reset">Reset</b-button>
       </b-form>
-        <b-button class="registro" @click="registrar">Registrar</b-button>
     </div>
   </div>
 </template>
