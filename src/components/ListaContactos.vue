@@ -15,11 +15,14 @@
             <td><h5 class="my-3">{{ item.nombre }}</h5></td>
             <td><p class="my-3">{{ item.correo }}</p></td>
             <td>
+
+              <b-button @click.prevent="editContacto(item.id)">Editar</b-button>
+
               <b-button class="mx-2 my-2 btn" id="show-btn" @click="$bvModal.show('bv-modal-example'), verMensaje(item)">Ver mensaje</b-button>
               <b-button class="mx-2 my-2 reset" @click.prevent="eliminarMensaje(item.id)">Eliminar</b-button>
             </td>
           </tr>
-
+<!-- Modal para ver mensaje -->
           <b-modal id="bv-modal-example" hide-footer>
           <template #modal-title>
             <h5>Mensaje</h5>
@@ -57,6 +60,10 @@ export default {
       this.mensajeModal = usuario.mensaje;
       this.idModal = usuario.id;
 
+    },
+
+    editContacto(id) {
+      this.$router.push({name: 'Editar', params: {id: id}});
     },
     
     eliminarMensaje(id) {
