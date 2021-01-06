@@ -65,6 +65,10 @@
           return;
         }
         this.$store.dispatch('enviandoTrabajo', this.form);
+        this.$message({
+          message: 'Gracias, pronto seras contactado.',
+          type: 'success'
+        });
       }
     }
 }

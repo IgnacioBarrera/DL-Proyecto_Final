@@ -47,6 +47,14 @@ const routes = [
     },
   },
   {
+    path: '/editar',
+    name: 'Editar',
+    component: () => import(/* webpackChunkName: "Editar" */ '../views/Editar.vue'),
+    meta:{
+      login: true
+    } 
+  },
+  {
     path: '/informes',
     name: 'Informes',
     component: () => import(/* webpackChunkName: "Informes" */ '../views/Informes.vue'),

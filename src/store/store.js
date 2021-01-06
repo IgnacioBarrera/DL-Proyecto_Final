@@ -112,11 +112,11 @@ export default new Vuex.Store({
       })
     },
     /* ACTUALIZO EL CONTACTO */
-    actualizarContacto(context, contactos) {
-      db.collection('contactenos').doc(contactos.id).update({
-        nombre: contactos.nombre,
-        correo: contactos.correo,
-        mensaje: contactos.mensaje
+    actualizarContacto(context, contactenos) {
+      db.collection('contactenos').doc(contactenos.id).update({
+        nombre: contactenos.nombre,
+        correo: contactenos.correo,
+        mensaje: contactenos.mensaje
       })
     },
     /* ELIMINO CONTACTO */
