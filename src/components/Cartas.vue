@@ -58,7 +58,7 @@
     </div>
     <div>
       <b-modal id="modal-2" title="Molino de Bolas">
-        <p class="my-4">Un molino de bolas es un tipo de molino utilizado para moler y mezclar materiales para ser utilizados en procesos de mezclado de minerales, pinturas, pirotecnia, cerámicas y sinterización de láser selectivo.</p>
+        <p class="my-4"><iframe class="container" height="250" src="https://www.youtube.com/embed/xkZs-2P5iHY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
       </b-modal>
     </div><div>
       <b-modal id="modal-3" title="Flotación" class="container">
