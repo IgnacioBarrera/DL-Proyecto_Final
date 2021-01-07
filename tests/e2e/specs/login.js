@@ -1,5 +1,3 @@
-// https://docs.cypress.io/api/introduction/api.html
-
 describe('Ingresa usuario con cuenta registrada', () => {
   it('Visits the app root url', () => {
     cy.visit('/login');

@@ -1,5 +1,3 @@
-// https://docs.cypress.io/api/introduction/api.html
-
 describe('Ingresa a contacto y envia un mensaje', () => {
     it('Visita la vista de contacto', () => {
         cy.visit('/contacto');
