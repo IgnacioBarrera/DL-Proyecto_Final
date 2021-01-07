@@ -10,4 +10,5 @@ describe('Ingresa usuario con cuenta registrada', () => {
     cy.get('[data-cy="inputContraseña"]').type(contraseña);
     cy.get('[data-cy="formularioEntrar"]').submit();
   })
-})
+});
+

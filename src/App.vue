@@ -58,7 +58,7 @@ export default {
         this.uid = user.uid;
         this.$store.dispatch('agregarUsuario',user)
         console.log('Hay usuario activo.');
-        this.$router.push('/informes')
+        this.$router.push('/')
       } else {
         console.log('No hay usuarios registrados')
       }
