@@ -2,14 +2,14 @@
   <div>
     <div class="formulario container my-5" style="text-align: -webkit-center;">
         <h1 class="text-white text-center">Iniciar Sesión</h1>
-      <b-form class="container px-5 py-3" @submit.prevent="login">
+      <b-form class="container px-5 py-3" @submit.prevent="login" data-cy="formularioEntrar">
             <!-- EMAIL -->
         <b-form-group id="input-group-1" label="Correo electrónico:" label-for="input-1" class="text-white">
-          <b-form-input id="input-1" v-model="form.email" type="email" required placeholder="Enter email"></b-form-input>
+          <b-form-input id="input-1" data-cy="inputCorreo" v-model="form.email" type="email" required placeholder="Enter email"></b-form-input>
         </b-form-group>
             <!-- CONTRASEÑA -->
         <b-form-group id="input-group-2" label="Ingrese contraseña:" label-for="input-2" class="text-white">
-          <b-form-input id="input-2" v-model="form.clave" type="password" required placeholder="Contraseña"></b-form-input>
+          <b-form-input id="input-2" data-cy="inputContraseña" v-model="form.clave" type="password" required placeholder="Contraseña"></b-form-input>
         </b-form-group>
             <!-- BOTONES -->
         <b-button type="submit" class="btn">Ingresar</b-button>
