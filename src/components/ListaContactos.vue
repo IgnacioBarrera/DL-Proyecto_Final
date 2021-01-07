@@ -18,7 +18,7 @@
 
               <b-button @click.prevent="editContacto(item.id)">Editar</b-button>
 
-              <b-button class="mx-2 my-2 btn" id="show-btn" @click="$bvModal.show('bv-modal-example'), verMensaje(item)">Ver mensaje</b-button>
+              <b-button class="mx-2 my-2 btn" id="show-btn" @click="$bvModal.show('bv-modal-example'), verMensaje(item)" data-cy="verMensaje">Ver mensaje</b-button>
               <b-button class="mx-2 my-2 reset" @click.prevent="eliminarMensaje(item.id)">Eliminar</b-button>
             </td>
           </tr>

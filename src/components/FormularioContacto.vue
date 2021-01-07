@@ -14,18 +14,18 @@
         </div>
       </div>
       <div class="col-md-6 my-2">
-        <form class="text-white" @submit.prevent="enviatrabajo">
+        <form class="text-white" @submit.prevent="enviatrabajo" data-cy="formularioEnviar">
           <div class="form-group">
             <label for="exampleFormControlInput1">Correo Electrónico</label>
-            <input v-model="form.correo" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese su correo electrónico" required/>
+            <input v-model="form.correo" data-cy="inputCorreo" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese su correo electrónico" required/>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput2">Nombre</label>
-            <input v-model="form.nombre" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Nombre" required/>
+            <input v-model="form.nombre" data-cy="inputNombre" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Nombre" required/>
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Mensaje</label>
-            <textarea v-model="form.mensaje" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensaje" required></textarea>
+            <textarea v-model="form.mensaje" data-cy="inputMensaje" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensaje" required></textarea>
           </div>
           <button type="submit" class="btn btn-info">Enviar</button>
         </form>
